@@ -1,0 +1,27 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/,http://127.0.0.1:8762/eureka/,http://127.0.0.1:8763/eureka/
+spring:
+  application:
+    name: zuul
+server:
+  port: 9999
+
+#zuul: 以/api-b/开头的请求都转发给service-feign服务；
+#routes:
+#  api-a:
+#    path: /api-a/**
+#    serviceId: server-wb-feign
+#    api-b:
+#      path: /api-b/**
+#      serviceId: service-feign
+zuul:
+  routes:
+    api-a:
+      path: /api-a/*
+      serviceId: server-wb-feign
+
+ribbon:
+  ReadTimeout: 60000
+  ConnetTimeout: 60000
